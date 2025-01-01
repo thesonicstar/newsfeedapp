@@ -65,7 +65,26 @@ def get_news():
         'apiKey': NEWS_API_KEY
     })
     logger.debug(response.json())
-    return jsonify(response.json())
+    #return jsonify(response.json())
+
+    data = response.json()  # Convert response content to a dictionary
+    # Filter out articles with "[Removed]" in the 'name' field
+    filtered_articles = [
+        article for article in data["articles"] if article["source"]["name"] != "[Removed]"
+    ]
+
+    # Update the response
+    filtered_response = {
+        "status": data["status"],
+        "totalResults": len(filtered_articles),  # Update count to match filtered articles
+        "articles": filtered_articles,
+    }
+
+    # Return the filtered response as JSON
+    logger.debug(filtered_response)
+    return jsonify(filtered_response)
+
+
 
 
 if __name__ == '__main__':

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 class="text-lg font-semibold mb-2">${article.title}</h3>
                         <p class="text-sm text-gray-600 mb-4">${article.description}</p>
                         <a href="${article.url}" target="_blank" class="text-blue-500 hover:underline">Read more</a>
+                        <p class="text-sm text-gray-600 mb-4">${article.publishedAt}</p>
                     `;
                     newsContainer.appendChild(card);
                 });
