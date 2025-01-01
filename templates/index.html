@@ -3,22 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalized News Aggregator</title>
+    <title>ExieLabs - NewsHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
     <link rel="stylesheet" href="static/styles.css">
+    <!-- favicon
+    <link rel="icon" type="image/x-icon" href="https://www.plex.tv/wp-content/themes/plex/assets/img/favicons/favicon.ico">-->
 </head>
-<body>
-    <header>
-        <h1>News Aggregator</h1>
-        <select id="category">
-            <option value="technology">Technology</option>
-            <option value="sports">Sports</option>
-            <option value="politics">Politics</option>
-        </select>
-        <button id="fetch-news">Get News</button>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition duration-500">
+
+    <!-- Header -->
+    <header class="bg-blue-500 text-white p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">ExieLabs - NewsHub</h1>
+        <div>
+            <button id="theme-toggle" class="bg-gray-800 text-white px-3 py-1 rounded">
+                Dark Mode
+            </button>
+        </div>
     </header>
-    <main id="news-container">
-        <!-- News articles will appear here -->
+
+    <!-- Main Content -->
+    <main class="container mx-auto mt-6 px-4">
+        <div class="flex justify-between items-center mb-4">
+            <select id="category" class="p-2 border rounded">
+                <option value="technology">Technology</option>
+                <option value="sports">Sports</option>
+                <option value="politics">Politics</option>
+            </select>
+            <button id="fetch-news" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Get News
+            </button>
+        </div>
+
+        <div id="news-container" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- News cards will be inserted here dynamically -->
+        </div>
     </main>
+        <!-- Footer -->
+    <footer class="custom-footer">
+        <div class="footer-content">
+            <span>&copy; 2024 My Application</span>
+            <a href="https://github.com/thesonicstar" target="_blank" class="github-link">
+                GitHub
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </footer>
+
     <script src="static/script.js"></script>
 </body>
 </html>

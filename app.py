@@ -64,9 +64,11 @@ def get_news():
         'category': category,
         'apiKey': NEWS_API_KEY
     })
+    logger.debug(response.json())
     return jsonify(response.json())
+
 
 if __name__ == '__main__':
     #app.run(debug=True)
     logger.info("Starting Flask application")
-    app.run(host='0.0.0.0', port=5050, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
