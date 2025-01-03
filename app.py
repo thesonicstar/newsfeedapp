@@ -111,6 +111,50 @@ def bookmark_article():
         return jsonify({"error": "Could not bookmark article"}), 400
 
 
+@app.route('/bookmarks')
+def bookmarks_page():
+    """Render the bookmarks page."""
+    return render_template('bookmarks.html')
+
+@app.route('/get_bookmarks', methods=['GET'])
+def get_bookmarks():
+    """Fetch all bookmarked articles from the database."""
+    try:
+        bookmarks = Bookmark.query.all()
+        bookmarks_list = [
+            {
+                "id": bookmark.id,
+                "title": bookmark.title,
+                "description": bookmark.description,
+                "url": bookmark.url,
+                "source_name": bookmark.source_name
+            }
+            for bookmark in bookmarks
+        ]
+        logger.debug(bookmarks_list)
+        return jsonify(bookmarks_list), 200
+    except Exception as e:
+        logger.error(f"Error fetching bookmarks: {e}")
+        return jsonify({"error": "Failed to fetch bookmarks"}), 500
+
+@app.route('/delete_bookmark/<int:bookmark_id>', methods=['DELETE'])
+def delete_bookmark(bookmark_id):
+    """Delete a specific bookmark."""
+    try:
+        bookmark = Bookmark.query.get(bookmark_id)
+        if not bookmark:
+            return jsonify({"error": "Bookmark not found"}), 404
+
+        db.session.delete(bookmark)
+        db.session.commit()
+        logger.debug(bookmark)
+        return jsonify({"message": "Bookmark deleted successfully"}), 200
+    except Exception as e:
+        logger.error(f"Error deleting bookmark: {e}")
+        return jsonify({"error": "Failed to delete bookmark"}), 500
+
+
+
 if __name__ == '__main__':
     if check_db_connection():
         print("Database is up and running")

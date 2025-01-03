@@ -5,11 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsContainer = document.getElementById('news-container');
 
 
+
     // Theme toggle
-    themeToggle.addEventListener('click', () => {
+    /*themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark');
         themeToggle.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
-    });
+    });*/
 
     // Fetch news
     fetchNewsButton.addEventListener('click', () => {
