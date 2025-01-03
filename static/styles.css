@@ -1,0 +1,106 @@
+/* styles.css */
+body {
+    transition: background-color 0.5s, color 0.5s;
+}
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer Styling */
+.custom-footer {
+    background-color: #2c2f38; /* Dark background color */
+    color: white;
+    padding: 10px 20px; /* Adjust padding for a slimmer footer */
+    display: flex;
+    justify-content: space-between; /* Content at the edges */
+    align-items: center; /* Vertically center content */
+    flex-wrap: nowrap; /* Prevent content from wrapping */
+    font-size: 0.9rem; /* Slightly smaller font size */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Add shadow at top for separation */
+}
+
+/* Footer Content Styling */
+.footer-content {
+    display: flex;
+    align-items: center; /* Vertically align content */
+    gap: 10px; /* Add small spacing between elements */
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* GitHub Icon Styling */
+.github-link {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    gap: 5px; /* Spacing between icon and text */
+}
+
+.github-link:hover {
+    color: #00aaff; /* Highlight effect on hover */
+}
+
+.github-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Toast Container Styles - Positioned at bottom-right corner */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Toast Styles */
+.toast {
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s, transform 0.5s;
+    opacity: 0;
+    transform: translateY(-10px);
+    position: relative;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.info {
+    background-color: #3182ce; /* Blue for info */
+}
+
+.toast.success {
+    background-color: #38a169; /* Green for success */
+}
+
+.toast.warning {
+    background-color: #dd6b20; /* Orange for warning */
+}
+
+.toast.error {
+    background-color: #e53e3e; /* Red for error */
+}
+
