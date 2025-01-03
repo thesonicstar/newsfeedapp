@@ -34,9 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         </button>
                     `;
                     newsContainer.appendChild(card);
+                    //showToast("News Fetched Successfully." , "success");
                 });
+                showToast("News Fetched Successfully." , "success");
             })
-            .catch(error => console.error("Error fetching news:", error));
+            //.catch(error => console.error("Error fetching news:", error));
+            //showToast("Error fetching news." , "error");
+            .catch(error => {
+                console.error("Error fetching news:", error);
+                showToast("Error fetching news." , "error");
+            });
     });
 });
 
@@ -56,15 +63,38 @@ function bookmarkArticle(url, title, description, sourceName) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.message) {
-            alert("Article bookmarked successfully!");
+         if (data.message === "Article bookmarked successfully") {
+            showToast("Article bookmarked successfully!" , "success");
+            //message = "success"
+        } else if (data.message === "Article has already been bookmarked") {
+            showToast("This article has already been bookmarked." , "info");
+            //message = "info"
         } else {
-            alert("Failed to bookmark the article.");
+            showToast("Failed to bookmark the article." , "error");
+            //message = "error"
         }
     })
     .catch(error => {
         console.error("Error bookmarking article:", error);
-        alert("An error occurred while bookmarking.");
+        showToast("An error occurred while bookmarking." , "error");
     });
 }
 
+function showToast(message, type = "info") {
+    const toastContainer = document.getElementById("toast-container");
+
+    // Create toast element
+    const toast = document.createElement("div");
+    toast.classList.add("toast", type, "show");
+    toast.innerText = message;
+
+    // Append toast to the container
+    toastContainer.appendChild(toast);
+
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove("show");
+        // Remove toast from DOM after fade-out
+        setTimeout(() => toastContainer.removeChild(toast), 500);
+    }, 3000);
+}

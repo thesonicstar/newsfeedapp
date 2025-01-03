@@ -89,6 +89,12 @@ def get_news():
 @app.route('/bookmark', methods=['POST'])
 def bookmark_article():
     data = request.json
+    logger.debug(data)
+
+    # Check if the article URL already exists in the database
+    existing_bookmark = Bookmark.query.filter_by(url=data.get('url')).first()
+    if existing_bookmark:
+        return jsonify({"message": "Article has already been bookmarked"}), 200
 
     new_bookmark = Bookmark(
         title=data.get('title'),
