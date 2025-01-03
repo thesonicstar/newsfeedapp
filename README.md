@@ -46,25 +46,18 @@ This is a Flask-based web application that allows users to fetch news articles, 
    NEWS_URL=https://newsapi.org/v2/top-headlines
 
    [CONN]
-   PORT=5000
+   PORT=5050
 
    [LOGGING]
-   LOG_FILE=logs/app.log
+   LOG_FILE=logs/newsfeed-app.log
+   DB_LOG_FILE = ../logs/db-app.log
    LOG_LEVEL=INFO
    MAX_LOG_SIZE=4  # in MB
    BACKUP_COUNT=5
    ```
    Replace `your_newsapi_key` with your [NewsAPI](https://newsapi.org/) key.
 
-5. **Initialize the Database**:
-   ```bash
-   flask shell
-   >>> from app import db
-   >>> db.create_all()
-   >>> exit()
-   ```
-
-6. **Run the Application**:
+5. **Run the Application**:
    ```bash
    python app.py
    ```
