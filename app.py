@@ -153,7 +153,27 @@ def delete_bookmark(bookmark_id):
         logger.error(f"Error deleting bookmark: {e}")
         return jsonify({"error": "Failed to delete bookmark"}), 500
 
+@app.route('/add_article', methods=['GET', 'POST'])
+def add_article():
+    if request.method == 'POST':
+        # Get data from the form
+        title = request.form.get('title')
+        description = request.form.get('description')
+        url = request.form.get('url')
+        source_name = request.form.get('source')
 
+        # Save to the database
+        new_article = Bookmark(title=title, description=description, url=url, source_name=source_name)
+        try:
+            db.session.add(new_article)
+            db.session.commit()
+            return jsonify({"message": "Article added successfully!"}), 201
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({"error": "Error adding article"}), 400
+
+    # Render the HTML form
+    return render_template('add_article.html')
 
 if __name__ == '__main__':
     if check_db_connection():
