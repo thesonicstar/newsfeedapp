@@ -13,17 +13,22 @@
     <!-- Header -->
     <header class="bg-green-700 text-white p-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">Bookmarked Articles</h1>
-        <a href="/" class="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700">Home</a>
+        <!--<a href="/" class="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700">Home</a>-->
     </header>
-
+    <nav class="bg-blue-500 text-white p-4 flex justify-between items-center">
+        <a href="/" class="text-lg font-bold">Home</a>
+        <a href="/bookmarks" class="text-lg font-bold">Bookmarks</a>
+        <a href="/add_article" class="text-lg font-bold">Add Article</a>
+    </nav>
     <!-- Main Content -->
     <main class="container mx-auto mt-6 px-4">
         <div id="bookmarks-container" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <!-- Bookmarked articles will be dynamically added here -->
         </div>
-    </main>
     <!-- Toast Notifications Container -->
     <div id="toast-container" class="toast-container"></div>
+    </main>
+
 
     <!-- Footer -->
     <footer class="custom-footer">
