@@ -17,6 +17,7 @@ config.read("config.ini")
 try:
     NEWSAPI_KEY = config["NEWSAPI"]["NEWS_TOKEN"]
     NEWSAPI_URL = config["NEWSAPI"]["NEWS_URL"]
+    GOOGLEAPI_NEWS_TOKEN = config["GOOGLEAPI"]["GOOGLEAPI_NEWS_TOKEN"]
     PORT = config["CONN"]["PORT"]
     LOG_FILE = config.get("LOGGING", "LOG_FILE", fallback="logs/app.log")
     LOG_LEVEL = config.get("LOGGING", "LOG_LEVEL", fallback="INFO").upper()
@@ -174,6 +175,24 @@ def add_article():
 
     # Render the HTML form
     return render_template('add_article.html')
+
+#@app.route('/google_news_page', methods=['GET'])
+#def google_news_page():
+#   return render_template('google_news.html')
+
+
+@app.route('/google_news_data', methods=['GET'])
+def google_news():
+    api_url = f"https://newsapi.org/v2/top-headlines?category=technology&apiKey={GOOGLEAPI_NEWS_TOKEN}"
+    response = requests.get(api_url)
+    return jsonify(response.json())
+    #return render_template('google_news.html')
+
+@app.route('/google_news', methods=['GET'])
+def google_news_page():
+    return render_template('google_news.html')  # Sends the HTML file to the client
+
+
 
 if __name__ == '__main__':
     if check_db_connection():
